@@ -7,7 +7,6 @@ usermod -aG docker ubuntu
 apt install git -y
 
 cd /home/ubuntu
-git clone https://github.com/mefengl/example-monitoring.git
-
-cd example-monitoring
+git clone https://github.com/liormilliger/prometheus-data-collector.git
+cd prometheus-data-collector
 docker-compose up -d
