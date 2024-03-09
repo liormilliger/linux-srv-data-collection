@@ -9,7 +9,7 @@ services:
     ports:
       - "9090"
     volumes:
-      - ./prometheus.yaml:/etc/prometheus/prometheus.yaml
+      - ../prometheus.yaml:/etc/prometheus/prometheus.yaml
     networks:
       - prometheus
 
@@ -18,8 +18,8 @@ services:
     ports:
       - "3000"
     volumes:
-      - ./grafana-provisioning/dashboards:/etc/grafana/provisioning/dashboards
-      - ./grafana-provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ../grafana-provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ../grafana-provisioning/datasources:/etc/grafana/provisioning/datasources
     networks:
       - prometheus
 

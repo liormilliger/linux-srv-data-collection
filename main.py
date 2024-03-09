@@ -1,10 +1,17 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 
 app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def welcome():
     return render_template('index.html')
+
+@app.route('/dashboard', methods=['GET'])
+def grafana_dashboard():
+    # Assuming Grafana is running on port 3000
+    grafana_url = "http://grafana:3000"
+    return redirect(grafana_url)
+
 
 @app.route('/system_data', methods=['GET'])
 def system_data():
