@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+
+  monitoring-app:
+    image: 704505749045.dkr.ecr.us-east-1.amazonaws.com/liorm-nanox:monitor-app
+    ports:
+      - "80:80"    
+    volumes:
+      - /home/ubuntu/systemlogs:/systemlogs

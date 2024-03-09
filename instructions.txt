@@ -1,0 +1,12 @@
+Requirements:
+1. Linux server
+2. cronjob that collects monitoring data:
+    - Mem Useage (RAM)
+    - CPU Useage (CPU)
+    - Disk Usage (DiskSpace)
+    - Using websocket for browser update
+3. No-ip - for DNS resolution
+4. Python Flask for UI (html)
+5. containerize and deploy as microservices
+6. check local
+7. deploy to EC2
