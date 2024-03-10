@@ -12,7 +12,7 @@ resource "aws_instance" "liorm-EC2-1a" {
   subnet_id = aws_subnet.us-east-subnets.id
   iam_instance_profile = "liorm-nanox"
 
-  user_data = file("../user-data.sh")
+  user_data = file("../prometheus/user-data.sh")
 
   depends_on = [
     aws_security_group.liorm-SG
