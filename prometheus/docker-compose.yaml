@@ -15,7 +15,7 @@ services:
     command:
       - --config.file=/etc/prometheus/prometheus.yaml
     ports:
-      - "9090:9090"
+      - "9090"
     volumes:
       - ./prometheus.yaml:/etc/prometheus/prometheus.yaml
 
@@ -30,4 +30,4 @@ services:
   node_exporter:
     image: prom/node-exporter:latest
     ports:
-      - "9100:9100"
+      - "9100"
