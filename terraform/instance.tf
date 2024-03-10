@@ -1,18 +1,22 @@
 resource "aws_key_pair" "liorm-pem-key" {
   key_name   = "liorm-tf-key"
-  public_key = "${file("~/.ssh/liorm-tf-key_rsa.pub")}"
+  public_key = file(var.public_key_path)
 }
 
-resource "aws_instance" "liorm-EC2-1a" {
-  ami                    = "ami-07d9b9ddc6cd8dd30"
-  instance_type          = "t3a.micro"
+resource "aws_instance" "liorm-EC2" {
+  ami                    = var.ami_id
+  instance_type          = var.instance_type
   key_name               = aws_key_pair.liorm-pem-key.id
-  availability_zone      = "us-east-1a"
+  availability_zone      = var.availability_zone
   vpc_security_group_ids = [ aws_security_group.liorm-SG.id ]
   subnet_id = aws_subnet.us-east-subnets.id
-  iam_instance_profile = "liorm-nanox"
+  iam_instance_profile = var.iam_instance_profile
 
-  user_data = file("../prometheus/userdata.sh")
+  user_data = file(var.user_data_path)
+  
+  tags = {
+    Name = "Prometheus-Server"
+  }
 
   depends_on = [
     aws_security_group.liorm-SG
@@ -28,20 +32,27 @@ resource "aws_security_group" "liorm-SG" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [var.all_traffic_cidr_block]
 
   }
   ingress {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [var.all_traffic_cidr_block]
   }
 
   ingress {
-    from_port   = 22
-    to_port     = 22
+    from_port   = 5000
+    to_port     = 5000
     protocol    = "tcp"
+    cidr_blocks = [var.all_traffic_cidr_block]
+  }
+
+  ingress {
+    from_port   = 0
+    to_port     = 65535
+    protocol    = "all"
     cidr_blocks = ["${var.KARMI_IP}", "${var.HOME_IP}"]
   }
 
@@ -49,7 +60,7 @@ resource "aws_security_group" "liorm-SG" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [var.all_traffic_cidr_block]
   }
 
   depends_on = [

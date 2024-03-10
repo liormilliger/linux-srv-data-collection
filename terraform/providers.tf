@@ -10,7 +10,7 @@ terraform {
   backend "s3" {
     bucket = "liorm-4nanox-bucket"
     key    = "tfstate/terraform.tfstate"
-    region = "us-east-1"
+    region = var.availability_zone
   }
 }
 
