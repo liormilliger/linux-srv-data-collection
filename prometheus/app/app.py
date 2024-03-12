@@ -32,6 +32,10 @@ def prometheus_service():
         'used_disk_space': f'{float(metrics_data["disk_status"]):.2f}%',
         'cpu_usage': f'{float(metrics_data["cpu_usage"])*100:.2f}% of CPU is in use'
     }
-    
+
+    return jsonify(response_data)
+
+
+  
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

@@ -2,12 +2,10 @@
 ############################
 variable "aws_config_path" {
   description = "aws configuration file path"
-  default = "~/.aws/config"
 }
 
 variable "aws_cred_path" {
   description = "aws credentials path"
-  default = "~/.aws/credentials"
 }
 
 ### EC2-USER DATA PATH
@@ -43,7 +41,6 @@ variable "iam_instance_profile" {
 #######################
 variable "public_key_path" {
   description = "Path to the public key file"
-  default     = "~/.ssh/liorm-tf-key_rsa.pub"
 }
 
 variable "all_traffic_cidr_block" {
@@ -56,11 +53,9 @@ variable "all_traffic_cidr_block" {
 variable KARMI_IP {
   description = "Karmi House IP"
   type = string
-  default = "147.235.208.149/32"
 }
 
 variable HOME_IP {
   description = "Home IP"
   type = string
-  default = "89.138.143.239/32"
 }

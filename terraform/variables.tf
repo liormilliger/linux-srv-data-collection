@@ -5,7 +5,7 @@ variable "public_key_path" {
 
 variable "user_data_path" {
   description = "Path to the user data script file"
-  default     = "../prometheus/userdata.sh"
+  default     = "../user-data.sh"
 }
 
 variable "ami_id" {
