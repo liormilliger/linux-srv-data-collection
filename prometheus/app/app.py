@@ -28,7 +28,7 @@ def prometheus_service():
             metrics_data[metric_name] = "ERROR: Failed to retrieve system data from Prometheus"
     
     response_data = {
-        'memory_usage': f'{float(metrics_data["mem_usage"]):.2f}%',
+        'memory_usage': f'{metrics_data["mem_usage"]:.2f}%',
         'free_disk_space': f'{float(metrics_data["disk_status"]):.2f}%',
         'cpu_usage': f'{float(metrics_data["cpu_usage"]):.2f}% of CPU is in use'
     }
